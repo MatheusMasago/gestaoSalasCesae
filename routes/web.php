@@ -2,9 +2,21 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
+use Illuminate\Support\Facades\Route;
+// Route::get('/', function ()) {
+//     return view('auth.login');
+// };
 
-Route::get('/', function () {
-    return view('auth.login');
+
+// Redirecionar '/' para '/home'
+Route::get('/', [HomeController::class, 'index'])->name('home');
+
+Route::get('/home', [HomeController::class, 'index'])->name('home');
+
+//Rota de fallback (Tratamento de exceção do 404)
+Route::fallback(function () {
+    return redirect()->route('home');
 });
 
 Route::get('/dashboard', function () {
