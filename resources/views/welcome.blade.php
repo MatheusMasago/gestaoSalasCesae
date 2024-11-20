@@ -1,4 +1,4 @@
-@extends('util.master')
+@extends('util.main')
 
 
 @section('content')

@@ -1,8 +1,8 @@
-@extends('util.master')
+@extends('util.main')
 
 @section('content')
 <div class="position-absolute top-50 start-0 translate-middle-y">
-    <img src="{{asset('images/logo_cesae-cores_horizontal.png')}}" width="400" height="290" alt="">
+    <img src="{{asset('images/logo_cesae-cores_horizontal.png')}}" id="img_cesae" width="400" height="290" alt="">
  </div>
 <div >
     <img src="{{asset('images/background1.png')}}" width="300" height="290" alt="">
