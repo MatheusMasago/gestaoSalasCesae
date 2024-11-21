@@ -23,9 +23,9 @@ Route::fallback(function () {
 // Route::get('/register') {
 //     return view('auth.register')->name('user.register');
 // }
-// Route::get('/', function () {
-//     return view('auth.login');
-// });
+Route::get('/', function () {
+     return view('auth.login');
+ });
 
 Route::get('/dashboard', function () {
     return view('dashboard');
