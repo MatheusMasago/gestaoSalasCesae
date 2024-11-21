@@ -20,10 +20,12 @@ Route::fallback(function () {
 
 
 //Merge Matheus
-Route::get('/register', function () {
-    return view('auth.register')->name('user.register');
-
-});
+// Route::get('/register') {
+//     return view('auth.register')->name('user.register');
+// }
+// Route::get('/', function () {
+//     return view('auth.login');
+// });
 
 Route::get('/dashboard', function () {
     return view('dashboard');

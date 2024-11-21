@@ -11,18 +11,17 @@
 <div class="position-absolute top-50 start-50 translate-middle">
  <!-- Session Status -->
     <x-auth-session-status class="mb-4" :status="session('status')" />
-    <h4>Login</h4>
+
 
     <form method="POST" class="formLogin" action="{{ route('dashboard') }}">
         @csrf
-
+        <h4>Login</h4>
         <!-- Email Add  ress -->
         <div class="mt-4" x-data>
             <x-input-label for="email" value="" />
             <x-text-input id="email" placeholder="Email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
             <x-input-error :messages="$errors->get('email')" class="mt-2" />
         </div>
-
         <!-- Password -->
         <div class="mt-4" x-data>
             <x-input-label for="password"  value="" />
@@ -42,9 +41,15 @@
                 <span class="text-sm text-gray-600 dark:text-gray-400">{{ __('Lembrar de mim') }}</span>
             </label>
         </div> --}}
-        <button type="button" type="submit" id="btnLogin" class="mb-4 btn btn-outline-primary">Login</button>
-        </div>
-    </form>
+      {{-- @guest
+             <button type="button" type="submit" id="btnLogin" class="mb-4 btn btn-outline-primary">Login</button>
+        @endguest --}}
+       {{-- @auth --}}
+           <form action="POST" action="{{route('logout')}}">
+            @csrf
+            <button id="btnLogin" class="mb-4 btn btn-outline-primary" type="submit">Logout</button>
+           </form>
+       {{-- @endauth --}}
 </div>
 <div  class="position-absolute bottom-0 end-0">
         <img src="{{asset('images/background2.png')}}"  width="300" height="300" alt="">
