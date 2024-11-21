@@ -1,4 +1,4 @@
-@extends('utils.main_layout')
+@extends('utils.main')
 
 @section('content')
 <div class="position-absolute top-50 start-0 translate-middle-y">
@@ -14,7 +14,7 @@
     <x-auth-session-status class="mb-4" :status="session('status')" />
 
 
-    <form method="POST"  class="formLogin" action="{{ route('dashboard') }}">
+    <form method="POST"  class="formLogin" action="{{ route('login') }}">
         @csrf
             <h4 id="register">Registrar-se</h4>
         <!-- Nome -->
