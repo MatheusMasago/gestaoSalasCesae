@@ -3,7 +3,6 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
-use Illuminate\Support\Facades\Route;
 // Route::get('/', function ()) {
 //     return view('auth.login');
 // };
@@ -16,7 +15,14 @@ Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 //Rota de fallback (Tratamento de exceção do 404)
 Route::fallback(function () {
-    return redirect()->route('home');
+    return redirect()->route('user.register');
+});
+
+
+//Merge Matheus
+Route::get('/register', function () {
+    return view('auth.register')->name('user.register');
+
 });
 
 Route::get('/dashboard', function () {

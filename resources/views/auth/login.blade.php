@@ -2,19 +2,18 @@
 
 @section('content')
 <div class="position-absolute top-50 start-0 translate-middle-y">
-    <img src="{{asset('images/logo_cesae-cores_horizontal.png')}}" id="img_cesae" width="400" height="290" alt="">
+    <img src="{{asset('images/logo_cesae-cores_horizontal.png')}}" id="img_cesae" width="370" height="200" alt="">
  </div>
 <div >
     <img src="{{asset('images/background1.png')}}" width="300" height="290" alt="">
 </div>
-
 
 <div class="position-absolute top-50 start-50 translate-middle">
  <!-- Session Status -->
     <x-auth-session-status class="mb-4" :status="session('status')" />
     <h4>Login</h4>
 
-    <form method="POST" action="{{ route('dashboard') }}">
+    <form method="POST" class="formLogin" action="{{ route('dashboard') }}">
         @csrf
 
         <!-- Email Add  ress -->
@@ -37,13 +36,13 @@
             <x-input-error :messages="$errors->get('password')" class="mt-2" />
         </div>
         <!-- Remember Me -->
-        <div class="mt-4">
+        {{-- <div class="mt-4">
             <label for="remember_me" class="inline-flex items-center">
                 <input id="remember_me" type="checkbox" class="rounded dark:bg-gray-900 border-gray-300 dark:border-gray-700 text-indigo-600 shadow-sm focus:ring-indigo-500 dark:focus:ring-indigo-600 dark:focus:ring-offset-gray-800" name="remember">
-                <span class="ms-2 text-sm text-gray-600 dark:text-gray-400">{{ __('Remember me') }}</span>
+                <span class="text-sm text-gray-600 dark:text-gray-400">{{ __('Lembrar de mim') }}</span>
             </label>
-        </div>
-        <button type="button" type="submit" class="btn btn-outline-primary">Login</button>
+        </div> --}}
+        <button type="button" type="submit" id="btnLogin" class="mb-4 btn btn-outline-primary">Login</button>
         </div>
     </form>
 </div>
