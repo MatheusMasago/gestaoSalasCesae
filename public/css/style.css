@@ -1,3 +1,4 @@
+
 /* Navbar */
 #navBar {
     padding-left: 4em;
@@ -179,4 +180,59 @@ background-color:#000000;
 
 .footer-menu ul li a:hover {
     color: #007bff;
+}
+
+#img_cesae{
+    margin-bottom: 5%;
+    margin-left: 60%;
+}
+.formLogin{
+    height: 330px;
+    margin-left: 80%;
+}
+#email{
+    margin: 10%;
+    padding: 10%;
+    border-width: 1px;
+    width: 300px;
+}
+#password{
+    margin:10%;
+    padding: 10%;
+    border-width: 1px;
+    width: 300px;
+}
+#btnLogin{
+    margin: 10%;
+    transition: background-color 0.7s ease;
+    width: 300px;
+    margin-top: 28px;
+}
+#btnLogin:hover{
+
+    background-color: #eb0089;
+}
+#name{
+    margin:10%;
+    padding: 10%;
+    border-width: 1px;
+    width: 300px;
+}
+#register{
+    margin: 10%;
+    width: 300px;
+}
+#rememberMe{
+   width: 200px;
+}
+
+#btnLogout{
+    margin: 10%;
+    transition: background-color 0.7s ease;
+    width: 90px;
+    margin-top: 28px;
+}
+#btnLogin:hover{
+
+    background-color: #eb0089;
 }
