@@ -1,4 +1,4 @@
-@extends('util.main')
+@extends('utils.main_layout')
 
 @section('content')
 <div class="position-absolute top-50 start-0 translate-middle-y">

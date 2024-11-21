@@ -1,4 +1,4 @@
-@extends('util.main')
+{{-- @extends('util.main')
 
 
 @section('content')
@@ -29,3 +29,4 @@
     <img src="{{asset('images/background2.png')}}" width="300" height="300" alt="">
 </div>
 @endsection
+ --}}

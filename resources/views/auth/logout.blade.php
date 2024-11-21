@@ -1,4 +1,4 @@
-@extends('util.main')
+@extends('utils.main_layout')
 
 
 @section('content')
