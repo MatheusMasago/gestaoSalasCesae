@@ -19,6 +19,18 @@ class HomeController extends Controller
         return view('layouts.main_layout');
     }
 
+    public function showDashboard(){
+        $reservations = db::table('reservations')
+        ->select('id_room', DB::raw('SUM(TIMESTAMPDIFF(MINUTE, start_time, end_time)) as total_hours'))
+        ->groupBy('id_room')
+        ->get();
+        //dd($reservations);
+
+        $labels = $reservations->pluck('id_room');
+        $data = $reservations->pluck('total_hours');
+
+        return view('dashboard', compact('labels', 'data'));
+    }
     /**
      * Show the form for creating a new resource.
      */

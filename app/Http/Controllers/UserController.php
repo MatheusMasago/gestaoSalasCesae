@@ -27,7 +27,7 @@ class UserController extends Controller
         $request->validate([
             'name' => 'string|required|max:255',
             'email' => 'email|required|unique:users',
-            'nif' => 'numeric|digits:9',
+            // 'nif' => 'numeric|digits:9',
             'password' => 'min:6|required',
             'user_type' => 'required|in:' . implode(',', [User::TYPE_ADMIN, User::TYPE_MODERATOR, User::TYPE_FORMADOR]),
         ]);
@@ -40,10 +40,10 @@ class UserController extends Controller
         User::insert([
             'name' => $request->name,
             'email' => $request->email,
-            'address' => $request->address,
-            'nif' => $request->nif,
+            // 'address' => $request->address,
+            // 'nif' => $request->nif,
             'password' => Hash::make($request->password),
-            'photo' => $photo,
+            // 'photo' => $photo,
             'user_type' => $request->user_type
         ]);
         return redirect()->route('login')->with('Usuário criado com sucesso!');
