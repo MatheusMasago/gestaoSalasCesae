@@ -40,7 +40,7 @@
                         </a>
                         <ul class="dropdown-menu dropdown-menu-center">
                             <li><a class="dropdown-item" href="{{route('login')}}">Login</a></li>
-                            <li><a class="dropdown-item" href="{{route('logout')}}">Logout</a></li>
+                            <li><a class="dropdown-item" href="#">Logout</a></li>
                             <li><a class="dropdown-item" href="#">Dashboard</a></li>
                         </ul>
                     </div>

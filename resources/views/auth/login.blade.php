@@ -13,7 +13,7 @@
     <x-auth-session-status class="mb-4" :status="session('status')" />
 
 
-    <form method="POST" class="formLogin" action="{{ route('home') }}">
+    <form method="POST" class="formLogin" action="{{ route('dashboard') }}">
         @csrf
         <h4>Login</h4>
         <!-- Email Add  ress -->
