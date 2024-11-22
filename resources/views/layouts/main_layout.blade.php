@@ -1,4 +1,4 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -38,11 +38,24 @@
                                 <i class="fa-regular fa-circle-user"></i>
                             </div>
                         </a>
-                        <ul class="dropdown-menu dropdown-menu-center">
-                            <li><a class="dropdown-item" href="{{route('login')}}">Login</a></li>
-                            <li><a class="dropdown-item" href="#">Logout</a></li>
-                            <li><a class="dropdown-item" href="#">Dashboard</a></li>
-                        </ul>
+                        @if (Route::has('login'))
+                            <ul class="dropdown-menu dropdown-menu-center">
+                                @auth
+                                    <li class="dropdown-item" style="color: #000000">Olá <span
+                                            style="color: #ddba76;">{{ Auth::user()->name }}</span></li>
+                                    <form method="POST" action="{{ route('logout') }}">
+                                        @csrf
+                                        <li class="dropdown-item">
+                                            <button class="notLikeButton" type="submit">Logout</button>
+                                        </li>
+                                    </form>
+                                @else
+                                    <li class="dropdown-item">
+                                        <a href="{{ route('login') }}">Login</a>
+                                    </li>
+                                @endauth
+                            </ul>
+                        @endif
                     </div>
                 </a>
             </div>
@@ -127,7 +140,7 @@
             </li>
         </ul>
 
-  <ul class="logout">
+        {{--         <ul class="logout">
             <li>
                 <a href="#">
                     <i class="fa fa-power-off"></i>
@@ -136,7 +149,7 @@
                     </span>
                 </a>
             </li>
-        </ul>
+        </ul> --}}
     </aside>
 
     <footer class="footer-section">
@@ -147,7 +160,7 @@
                         <p>Copyright &copy; 2024 CESAE Book Space. Todos os direitos reservados.</p>
                     </div>
                 </div>
-                                 <div class="col-xl-6 col-lg-6 d-none d-lg-block text-right">
+                {{--                     <div class="col-xl-6 col-lg-6 d-none d-lg-block text-right">
                         <div class="footer-menu">
                             <ul>
                                 <li><a href="#">Home</a></li>
@@ -157,7 +170,7 @@
                                 <li><a href="#">Contact</a></li>
                             </ul>
                         </div>
-                    </div>
+                    </div> --}}
             </div>
         </div>
     </footer>

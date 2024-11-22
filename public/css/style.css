@@ -180,34 +180,61 @@ background-color:#000000;
 .footer-menu ul li a:hover {
     color: #007bff;
 }
-#email{
-    border-width: 1px;
-    width: 300px;
-}
-#password{
-    border-width: 1px;
-    width: 300px;
-}
-#name{
-    border-width: 1px;
-    width: 300px;
-}
-.formLogin{
-    align-items: center;
-}
-#btnLogin{
-    margin-left: 9%;
-    transition: background-color 0.7s ease;
-    width: 250px;
-    margin-top: 28px;
-}
-#btnLogin:hover{
 
-    background-color: #eb0089;
+
+/* Formulário login */
+#feedback-form {
+    width: 30em;
+    margin: 4em auto;
+    background-color: #fcfcfc;
+    padding: 60px 50px 60px;
+    box-shadow: 1px 4px 10px 1px #aaa;
+    font-family: sans-serif;
 }
-#btnRegister{
-    margin-left: 9%;
-    transition: background-color 0.7s ease;
-    width: 250px;
-    margin-top: 28px;
+
+#feedback-form * {
+    box-sizing: border-box;
+}
+
+#feedback-form h2 {
+    text-align: center;
+    margin-bottom: 1em;
+}
+
+#feedback-form input {
+    margin-bottom: 25px;
+}
+
+#feedback-form input[type=text] {
+    display: block;
+    height: 32px;
+    padding: 6px 16px;
+    width: 100%;
+    border: none;
+    background-color: #f3f3f3;
+}
+
+#feedback-form button[type=submit] {
+    display: block;
+    margin: 40px auto 0;
+    width: 150px;
+    height: 40px;
+    border-radius: 25px;
+    border: none;
+    color: #eee;
+    font-weight: 700;
+    box-shadow: 1px 4px 10px 1px #aaa;
+    background: #c9a763;
+    margin-bottom: -2em;
+}
+
+.notLikeButton {
+    background: none;
+    border: none;
+    color: #000000;
+    padding: 0;
+}
+
+.notLikeButton:hover {
+    color: #ddba76 !important;
 }
