@@ -180,3 +180,34 @@ background-color:#000000;
 .footer-menu ul li a:hover {
     color: #007bff;
 }
+#email{
+    border-width: 1px;
+    width: 300px;
+}
+#password{
+    border-width: 1px;
+    width: 300px;
+}
+#name{
+    border-width: 1px;
+    width: 300px;
+}
+.formLogin{
+    align-items: center;
+}
+#btnLogin{
+    margin-left: 9%;
+    transition: background-color 0.7s ease;
+    width: 250px;
+    margin-top: 28px;
+}
+#btnLogin:hover{
+
+    background-color: #eb0089;
+}
+#btnRegister{
+    margin-left: 9%;
+    transition: background-color 0.7s ease;
+    width: 250px;
+    margin-top: 28px;
+}

@@ -7,21 +7,26 @@
 
 
 <div class="position-absolute top-50 start-50 translate-middle">
-    <h3 style="margin-bottom: 5%">Login</h3>
-    <form  style="display: flex; flex-direction: column; gap: 10px; max-width: 300px;" method="POST" action="{{route('go_to_home')}}">
+
+    <h3 style="margin-bottom: 5%">Registre-se</h3>
+    <form style="display: flex; flex-direction: column; gap: 10px; max-width: 300px;" method="POST" action="{{route('go_to_home')}}">
+
+    <label for="name"></label>
+    <input type="string" name="name" id="name" placeholder="Digite seu nome">
 
     <label for="email"></label>
     <input type="email" name="email" id="email" placeholder="Digite seu email">
 
     <label for="password"></label>
     <input type="password" name="password" id="password" placeholder="Digite sua senha">
-    @guest
-             <button type="submit" id="btnLogin" class="btn btn-outline-primary">Login</button>
+
+    <button type="submit" id="btnRegister" class="btn btn-outline-primary">Login</button>
     @endguest
-        @auth
-        <form method="POST" action="{{route('logout')}}"></form>
-        <button type="button" class="btn btn-outline-primary">Logout</button>
-        @endauth
+
+    @auth
+    <form method="POST" action="{{route('logout')}}"></form>
+    <button type="button" class="btn btn-outline-primary">Primary</button>
+    @endauth
     </form>
 </div>
 <div class="position-absolute bottom-0 end-0">
