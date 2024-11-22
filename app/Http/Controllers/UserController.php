@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
@@ -14,20 +17,36 @@ class UserController extends Controller
         //
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
-        //
+        return view('auth.register');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'string|required|max:255',
+            'email' => 'email|required|unique:users',
+            'nif' => 'numeric|digits:9',
+            'password' => 'min:6|required',
+            'user_type' => 'required|in:' . implode(',', [User::TYPE_ADMIN, User::TYPE_MODERATOR, User::TYPE_FORMADOR]),
+        ]);
+
+        $photo = null;
+        if ($request->hasFile('photo')) {
+            $photo = Storage::putFile('uploadedImages', $request->photo);
+        }
+
+        User::insert([
+            'name' => $request->name,
+            'email' => $request->email,
+            'address' => $request->address,
+            'nif' => $request->nif,
+            'password' => Hash::make($request->password),
+            'photo' => $photo,
+            'user_type' => $request->user_type
+        ]);
+        return redirect()->route('login')->with('Usuário criado com sucesso!');
     }
 
     /**
