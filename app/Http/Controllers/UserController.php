@@ -11,7 +11,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        return view('auth.register');
     }
 
     /**
@@ -19,15 +19,29 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        return view('auth.login');
     }
 
     /**
      * Store a newly created resource in storage.
      */
+
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required|email',
+            'password' => 'required',
+            'user_type'=>'required|in:' . implode(',',[User::TYPE_ADMIN,User::TYPE_MODERATOR,User::TYPE_FORMADOR]),
+        ]);
+        User::insert([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+            'user_type'=>$request->user_type
+        ]);
+        return redirect()->route('login')->with('message', 'Usuário criado com sucesso');
+
     }
 
     /**

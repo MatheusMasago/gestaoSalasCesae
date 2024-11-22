@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -39,7 +39,7 @@
                             </div>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-center">
-                            <li><a class="dropdown-item" href="#">Login</a></li>
+                            <li><a class="dropdown-item" href="{{route('login')}}">Login</a></li>
                             <li><a class="dropdown-item" href="#">Logout</a></li>
                             <li><a class="dropdown-item" href="#">Dashboard</a></li>
                         </ul>
@@ -127,7 +127,7 @@
             </li>
         </ul>
 
-{{--         <ul class="logout">
+  <ul class="logout">
             <li>
                 <a href="#">
                     <i class="fa fa-power-off"></i>
@@ -136,7 +136,7 @@
                     </span>
                 </a>
             </li>
-        </ul> --}}
+        </ul>
     </aside>
 
     <footer class="footer-section">
@@ -147,7 +147,7 @@
                         <p>Copyright &copy; 2024 CESAE Book Space. Todos os direitos reservados.</p>
                     </div>
                 </div>
-                {{--                     <div class="col-xl-6 col-lg-6 d-none d-lg-block text-right">
+                                 <div class="col-xl-6 col-lg-6 d-none d-lg-block text-right">
                         <div class="footer-menu">
                             <ul>
                                 <li><a href="#">Home</a></li>
@@ -157,7 +157,7 @@
                                 <li><a href="#">Contact</a></li>
                             </ul>
                         </div>
-                    </div> --}}
+                    </div>
             </div>
         </div>
     </footer>

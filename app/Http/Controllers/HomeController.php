@@ -2,7 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class HomeController extends Controller
 {
@@ -11,24 +16,23 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('register');
+        return view('layouts.main_layout');
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
-    {
-        //
-    }
-
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
-    {
-        //
-    }
+    // public function store(Request $request)
+    // {
+    //     $credentials = $request->only('email','password');
+    //     if (Auth::attempt($credentials)) {
+    //         return redirect()->route('home')->with('message', 'Logado com sucesso!');
+    //     }
+    //     return back();
+    // }
 
     /**
      * Display the specified resource.
