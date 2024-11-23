@@ -21,7 +21,7 @@ class HomeController extends Controller
 
     public function showDashboard(){
         $reservations = db::table('reservations')
-        ->select('id_room', DB::raw('SUM(TIMESTAMPDIFF(MINUTE, start_time, end_time)) as total_hours'))
+        ->select('id_room', DB::raw('SUM(TIMESTAMPDIFF(HOUR, start_time, end_time)) as total_hours'))
         ->groupBy('id_room')
         ->get();
         //dd($reservations);
