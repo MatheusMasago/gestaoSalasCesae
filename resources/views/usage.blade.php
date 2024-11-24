@@ -24,13 +24,13 @@
 <script>
 
         const id = @json($id);
+        const roomName= @json($room_name);
 
     const ctx = document.getElementById('myChart');
     new Chart(ctx, {
-      type: 'line',
+      type: 'doughnut',
       data: {
-        labels: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'],
-        
+        labels: ['Sala','Sala','Sala',],
         datasets: [{
           label: 'Horas',
           // total de salas reservadas

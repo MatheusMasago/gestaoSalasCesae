@@ -17,8 +17,11 @@ class HomeController extends Controller
     public function showUse(){
         $reservations = DB::table('reservations')
         ->get();
+        $rooms = db::table('rooms')
+        ->get();
         $id = $reservations->pluck('id');
-        return view('usage', compact('reservations','id'));
+        $room_name = $rooms->pluck('name');
+        return view('usage', compact('reservations','id','room_name'));
     }
 
     public function index()
