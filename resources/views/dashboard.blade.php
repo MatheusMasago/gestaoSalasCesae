@@ -11,7 +11,6 @@
             <div class="inbox-wid">
                 <div class="inbox-item">
                     <canvas id="myChart">Gráfico</canvas>
-
                 </div>
             </div>
         </div>
@@ -25,7 +24,7 @@
         // Dados do Laravel para Chart.js
         const labels = @json($labels);
         const data = @json($data);
-        const concatenatedLabels = labels.map(label => `Sala ${label}`);
+        const Salas = labels.map(label => `Sala ${label}`);
 
 
     const ctx = document.getElementById('myChart');
@@ -33,7 +32,7 @@
       type: 'doughnut',
       data: {
         // Essa label é para o nome das salas (ex: Sala 1, Lab 1)
-        labels: concatenatedLabels,
+        labels: Salas,
         datasets: [{
           label: 'Horas',
           //Este "data" é para o valor em horas de cada sala
@@ -64,10 +63,6 @@
       options: {
         responsive:true,
         scales: {
-          y: {
-            min: 10,
-            max: 50,
-          }
         }
       }
     });

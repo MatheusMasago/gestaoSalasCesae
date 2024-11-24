@@ -21,6 +21,7 @@
     <script src="{{asset('js/main.js') }}" defer></script>
     <script src="{{asset('js/chart.js')}}" defer></script>
     <script src="{{asset('css/style.css')}}" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
 <body>

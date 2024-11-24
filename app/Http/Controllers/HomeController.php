@@ -14,6 +14,13 @@ class HomeController extends Controller
     /**
      * Display a listing of the resource.
      */
+    public function showUse(){
+        $reservations = DB::table('reservations')
+        ->get();
+        $id = $reservations->pluck('id');
+        return view('usage', compact('reservations','id'));
+    }
+
     public function index()
     {
         return view('layouts.main_layout');

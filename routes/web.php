@@ -15,6 +15,7 @@ Route::get('/users/register', [UserController::class, 'create'])->name('user.reg
 
 Route::post('/storeUsers', [UserController::class, 'store'])->name('users.store');
 
+Route::get('usage',[HomeController::class, 'showUse'])->name('usage');
 /* Rota de fallback (Tratamento de exceção do 404) */
 Route::fallback(function () {
     return redirect()->route('home');
