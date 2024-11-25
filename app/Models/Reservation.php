@@ -11,6 +11,18 @@ class Reservation extends Model
 {
     /** @use HasFactory<\Database\Factories\ReservationFactory> */
     use HasFactory;
+    protected $table = 'reservations';
+
+    // Define the fillable attributes for mass assignment
+    protected $fillable = [
+        'id',
+        'date',
+        'start_time',
+        'end_time',
+        'user_id',
+        'room_id',
+        'course_id',
+    ];
 
     public function users()
     {
