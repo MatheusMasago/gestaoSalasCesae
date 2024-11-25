@@ -27,6 +27,7 @@
         const Salas = labels.map(label => `Sala ${label}`);
 
 
+
     const ctx = document.getElementById('myChart');
     new Chart(ctx, {
       type: 'doughnut',

@@ -8,19 +8,19 @@ return new class extends Migration
 {
     public function up(): void
     {
-    //     Schema::create('reservations', function (Blueprint $table) {
-    //         $table->increments('id');
-    //         $table->date('date');
-    //         $table->time('start_time');
-    //         $table->time('end_time');
-    //         $table->unsignedBigInteger('id_user');
-    //         $table->foreign('id_user')->references('id')->on('users')->onDelete('cascade');
-    //         $table->unsignedInteger('id_course');
-    //         $table->foreign('id_course')->references('id')->on('courses')->onDelete('cascade');
-    //         $table->unsignedInteger('id_room');
-    //         $table->foreign('id_room')->references('id')->on('rooms')->onDelete('cascade');
-    //     });
-    //
+        Schema::create('reservations', function (Blueprint $table) {
+            $table->increments('id')->default(0);
+            $table->date('date');
+            $table->time('start_time');
+            $table->time('end_time');
+            $table->unsignedBigInteger('id_user');
+            $table->foreign('id_user')->references('id')->on('users')->onDelete('cascade');
+            $table->unsignedInteger('id_course');
+            $table->foreign('id_course')->references('id')->on('courses')->onDelete('cascade');
+            $table->unsignedInteger('id_room');
+            $table->foreign('id_room')->references('id')->on('rooms')->onDelete('cascade');
+        });
+
 }
     public function down(): void
     {

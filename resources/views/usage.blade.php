@@ -3,10 +3,31 @@
 @section('content')
 
 
+<div id="cards" class="position-absolute top-50 start-0 translate-middle">
 
+<div  class="card text-bg-success mb-3" style="max-width: 18rem;">
+        <div class="card-header">Salas Usadas</div>
+        <div class="card-body">
+        <h5 class="card-title">Veja quantas Salas estão reservadas</h5>
+        <p class="card-text">As seguintes salas já estão reservadas: {{$id}}</p>
+        </div>
+    </div>
+</div>
+
+<div id="cards2" class="position-absolute top-50 end-0 translate-middle-y">
+ <div  class="card text-bg-success mb-3" style="max-width: 18rem;">
+        <div class="card-header">As Salas mais reservadas</div>
+        <div class="card-body">
+        <h5 class="card-title">Veja quais as nossas salas mais reservadas</h5>
+        <p class="card-text">Veja nossas Salas mais usadas <a href="{{route('user.dashboard')}}">aqui</a></p>
+        </div>
+    </div>
+</div>
 
 <div id="graficoSala" class="position-absolute top-50 start-50 translate-middle">
-    <div  class="card m-b20"  style="width: 1000px" >
+
+
+    <div  class="card m-b20"  style="width: 800px" >
         <div class="card-body" >
             <h4 class="mt-0 header-title mb-3">Salas Reservadas</h4>
             <hr>
