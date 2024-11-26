@@ -2,13 +2,14 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Models\Course;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use App\Notifications\CustomVerifyEmail;
 
-class User extends Authenticatable
+class User extends Authenticatable implements MustVerifyEmail
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory, Notifiable;
@@ -16,6 +17,26 @@ class User extends Authenticatable
     const TYPE_ADMIN = 'Admin';
     const TYPE_MODERATOR = 'Moderator';
     const TYPE_FORMADOR = 'Formador';
+
+
+    // Sobrescreva o método que envia a notificação de verificação
+    public function sendEmailVerificationNotification()
+    {
+        $this->notify(new CustomVerifyEmail());
+    }
+
+    // Definindo a relação de notificações com o modelo Notification
+    public function notifications()
+    {
+        return $this->morphMany(\Illuminate\Notifications\DatabaseNotification::class, 'notifiable');
+    }
+
+    // Método para obter notificações não lidas
+    public function unreadNotifications()
+    {
+        return $this->notifications()->whereNull('read_at'); // Filtra notificações não lidas
+    }
+
 
     /**
      * The attributes that are mass assignable.
@@ -25,6 +46,7 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'email',
+        'email_verified_at',
         'password',
         'user_type',
     ];
@@ -56,7 +78,7 @@ class User extends Authenticatable
         ];
     }
 
-     public function cousers()
+    public function cousers()
     {
         return $this->hasMany(Course::class);
     }

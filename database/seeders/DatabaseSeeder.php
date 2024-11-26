@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use App\Models\User;
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -13,15 +12,15 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        User::factory()
-            ->count(50)
-            ->create();
+        // Call seeders in a specific order
+        $this->call([
+            UserSeeder::class,      // Populate the users table first
+            CourseSeeder::class,    // Populate the courses table
+            LocalSeeder::class,    // Populate the courses table
+            RoomSeeder::class,      // Populate the rooms table
+            ReservationSeeder::class,  // Populate the reservation table with relations
+        ]);
 
-        // User::factory(10)->create();
-
-        /*         User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
-        ]); */
+        $this->command->info('Database seeding completed successfully!');
     }
 }

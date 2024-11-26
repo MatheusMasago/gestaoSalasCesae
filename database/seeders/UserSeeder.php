@@ -17,6 +17,7 @@ class UserSeeder extends Seeder
         User::create([
             'name' => 'Anabela Ribeiro',
             'email' => 'anabelaRibeiro@email.com',
+            'email_verified_at' => now(),
             'password' => Hash::make('anabelaRibeiro@email.com'),
             'user_type' => 'Admin',
         ]);
@@ -24,6 +25,7 @@ class UserSeeder extends Seeder
         User::create([
             'name' => 'António Costa',
             'email' => 'antonioCosta@email.com',
+            'email_verified_at' => now(),
             'password' => Hash::make('antonioCosta@email.com'),
             'user_type' => 'Admin',
         ]);
@@ -31,6 +33,7 @@ class UserSeeder extends Seeder
         User::create([
             'name' => 'Bruno Santos',
             'email' => 'brunoSantos@email.com',
+            'email_verified_at' => now(),
             'password' => Hash::make('brunoSantos@email.com'),
             'user_type' => 'Moderator',
         ]);
@@ -38,6 +41,7 @@ class UserSeeder extends Seeder
         User::create([
             'name' => 'Vitor Santos',
             'email' => 'vitorSantos@email.com',
+            'email_verified_at' => now(),
             'password' => Hash::make('vitorSantos@email.com'),
             'user_type' => 'Formador',
         ]);

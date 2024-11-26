@@ -12,6 +12,8 @@ class Reservation extends Model
     /** @use HasFactory<\Database\Factories\ReservationFactory> */
     use HasFactory;
 
+    public $timestamps = false;
+
     public function users()
     {
         return $this->hasMany(User::class);
@@ -22,8 +24,8 @@ class Reservation extends Model
         return $this->hasMany(Course::class);
     }
 
-    public function rooms()
+    public function room()
     {
-        return $this->hasMany(Room::class);
+        return $this->belongsTo(Room::class, 'id_room');  // Assumindo que a chave estrangeira é 'id_room'
     }
 }

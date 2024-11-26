@@ -13,11 +13,12 @@ return new class extends Migration
             $table->date('date');
             $table->time('start_time');
             $table->time('end_time');
+            $table->string('status');
             $table->unsignedBigInteger('id_user');
             $table->foreign('id_user')->references('id')->on('users')->onDelete('cascade');
             $table->unsignedInteger('id_course');
             $table->foreign('id_course')->references('id')->on('courses')->onDelete('cascade');
-            $table->unsignedInteger('id_room');
+            $table->unsignedBigInteger('id_room');
             $table->foreign('id_room')->references('id')->on('rooms')->onDelete('cascade');
         });
     }
