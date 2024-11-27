@@ -64,8 +64,3 @@ Route::middleware('auth')->get('/notifications/{notificationId}/read', [Verifica
 Route::fallback(function () {
     return redirect()->route('login');
 });
-
-
-/* Route::get('/notifications/{notificationId}/read', [VerificationController::class, 'markAsRead'])->name('notifications.read')
-    ->middleware('auth');
- */

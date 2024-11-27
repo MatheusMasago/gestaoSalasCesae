@@ -32,7 +32,7 @@ class RegisterController extends Controller
      */
     public function register(Request $request)
     {
-        set_time_limit(60);  // 60 segundos
+        set_time_limit(40);  // 60 segundos
 
         // Valida os dados de entrada (nome, email, senha)
         $validated = $request->validate([

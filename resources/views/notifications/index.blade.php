@@ -25,7 +25,7 @@
                             <td>{{ $notification->created_at->format('d/m/Y H:i') }}</td>
                             <td>
                                 <a href="{{ route('notifications.read', $notification->id) }}">
-                                    <i class="fas fa-eye action-icon view"></i>
+                                    <i class="fa fa-check" style="color: #B00020"></i>
                                 </a>
                                 </form>
                             </td>

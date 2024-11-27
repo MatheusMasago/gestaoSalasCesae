@@ -2,10 +2,6 @@
 
 @section('title', 'CESAE Book Space')
 @section('content')
-
-    {{--     <div class="position-absolute top-0 start-0">
-                <img src="{{ asset('images/background1.png') }}" width="300" height="290" alt="">
-            </div> --}}
     <div class="container">
         @auth
             @if (Auth::user()->user_type == App\Models\User::TYPE_ADMIN)
@@ -86,8 +82,5 @@
                 </li>
             </ul>
         </nav>
-        {{--         <div class="position-absolute bottom-0 end-0">
-            <img src="{{ asset('images/background2.png') }}" width="390" height="350" alt="">
-        </div> --}}
     </div>
 @endsection
