@@ -4,9 +4,6 @@
 @section('content')
 
     <div class="container">
-        {{--     <div class="position-absolute top-0 start-0">
-                <img src="{{ asset('images/background1.png') }}" width="300" height="290" alt="">
-            </div> --}}
         @auth
             @if (Auth::user()->user_type == App\Models\User::TYPE_ADMIN)
                 <a href="{{ route('locals.create') }}" id="newUser">

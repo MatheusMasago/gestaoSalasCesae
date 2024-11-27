@@ -9,8 +9,8 @@
             <table id="keywords" cellspacing="0" cellpadding="0">
                 <thead>
                     <tr>
-                        <th style="width: 20%"><span>Sala</span></th>
-                        <th><span>Data</span></th>
+                        <th style="width: 15%"><span>Local</span></th>
+                        <th><span>Sala</span></th>
                         <th><span>Início reserva</span></th>
                         <th><span>Fim reserva</span></th>
                         <th><span>Estado</span></th>
@@ -19,8 +19,8 @@
                 <tbody>
                     @foreach ($reservations as $reservation)
                         <tr>
-                            <td class="lalign">{{ $reservation->room ? $reservation->room->name : 'Sem Sala' }}</td>
-                            <td>{{ $reservation->date }}</td>
+                            <td>{{ $reservation->locals_name ?? 'Sem Local' }}</td>
+                            <td>{{ $reservation->rooms_name ?? 'Sem Sala' }}</td>
                             <td>{{ $reservation->start_time }}</td>
                             <td>{{ $reservation->end_time }}</td>
                             <td>{{ ucfirst($reservation->status) }}</td>

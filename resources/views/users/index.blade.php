@@ -4,11 +4,14 @@
 @section('content')
 
     <div class="container">
-        <a href="{{ route('users.create') }}" id="newUser">
-            <i class="fas fa-plus"></i>Criar Usuário
-        </a>
+        @auth
+            @if (Auth::user()->user_type == App\Models\User::TYPE_ADMIN)
+                <a href="{{ route('users.create') }}" id="newUser">
+                    <i class="fas fa-plus"></i>Criar Usuário
+                </a>
+            @endif
+        @endauth
         <h1 id="viewUsersTitle">Gerenciamento de Usuários</h1>
-
         <!-- Container da tabela para permitir rolagem horizontal -->
         <div class="table-container">
             <table id="keywords" cellspacing="0" cellpadding="0">
@@ -33,21 +36,24 @@
                                 <a href="{{ route('users.show', $user) }}" title="Ver">
                                     <i class="fas fa-eye action-icon view"></i>
                                 </a>
+                                @auth
+                                    @if (Auth::user()->user_type == App\Models\User::TYPE_ADMIN)
+                                        <!-- Ícone de Editar -->
+                                        <a href="{{ route('users.edit', $user) }}" title="Editar">
+                                            <i class="fas fa-edit action-icon edit"></i>
+                                        </a>
 
-                                <!-- Ícone de Editar -->
-                                <a href="{{ route('users.edit', $user) }}" title="Editar">
-                                    <i class="fas fa-edit action-icon edit"></i>
-                                </a>
-
-                                <!-- Ícone de Excluir -->
-                                <form action="{{ route('users.destroy', $user) }}" method="POST" class="d-inline-block"
-                                    onsubmit="return confirm('Tem certeza que deseja excluir este usuário?');">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" style="border: none; background: transparent; padding: 0;">
-                                        <i class="fas fa-trash action-icon delete" title="Excluir"></i>
-                                    </button>
-                                </form>
+                                        <!-- Ícone de Excluir -->
+                                        <form action="{{ route('users.destroy', $user) }}" method="POST" class="d-inline-block"
+                                            onsubmit="return confirm('Tem certeza que deseja excluir este usuário?');">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" style="border: none; background: transparent; padding: 0;">
+                                                <i class="fas fa-trash action-icon delete" title="Excluir"></i>
+                                            </button>
+                                        </form>
+                                    @endif
+                                @endauth
                             </td>
                         </tr>
                     @endforeach

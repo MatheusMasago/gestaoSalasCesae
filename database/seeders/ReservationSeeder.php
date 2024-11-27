@@ -25,13 +25,13 @@ class ReservationSeeder extends Seeder
         // Insert 20 random reservations
         foreach (range(1, 20) as $index) {
             $date = Carbon::today()->addDays(rand(0, 30)); // Random date within the next 30 days
-            $startTime = Carbon::createFromTime(rand(8, 15), 0); // Random time between 8 AM and 3 PM
+            $startTime = Carbon::createFromTime(rand(9, 19), 0, 0);  // Random time between 8 AM and 3 PM
             $endTime = (clone $startTime)->addHours(rand(1, 3)); // End time is 1-3 hours later
 
             DB::table('reservations')->insert([
                 'date' => $date->toDateString(),
-                'start_time' => $startTime->toTimeString(),
-                'end_time' => $endTime->toTimeString(),
+                'start_time' => $startTime->toDateString(),
+                'end_time' => $endTime->toDateString(),
                 'status' => 'pending',
                 'id_user' => $users->random(),
                 'id_course' => $courses->random(),

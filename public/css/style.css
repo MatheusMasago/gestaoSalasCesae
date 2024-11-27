@@ -47,7 +47,7 @@ body {
 
 /* Aumenta o brilho da logo para ela se destacar */
 .navbar-brand img {
-    filter: brightness(1.3);
+    filter: brightness(1.5);
 }
 
 #logoBrand {
@@ -104,13 +104,13 @@ body {
 
 /* Ícones no menu */
 #icons {
-    color: #ad0063;
+    color: #25183E;
     font-size: 1.4em;
     margin-left: 1.2em;
 }
 
 #icons:hover {
-    color: #d9006e;
+    color: #605a87;
 }
 
 .btn:hover {
@@ -187,7 +187,8 @@ aside.main-menu.expanded {
     border-collapse: collapse;
     border-spacing: 0;
     /* color: #86005b; */
-    color: #ad0063;
+    /* color: #ad0063; */
+    color: #9d9cb7;
     font-size: 14px;
     text-decoration: none;
     -webkit-transform: translateZ(0) scale(1, 1);
@@ -282,7 +283,7 @@ aside li {
 .copyright-text p {
     margin: 0;
     font-size: 14px;
-    color: #878787;
+    color: #9d9cb7;
 }
 
 

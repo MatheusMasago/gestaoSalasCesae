@@ -11,7 +11,12 @@ class ReservationController extends Controller
     // Exibir todas as reservas
     public function index()
     {
-        $reservations = Reservation::paginate(10);  // Você pode customizar para buscar apenas reservas do usuário autenticado
+        $reservations = DB::table('reservations')
+            ->join('rooms', 'rooms.id', '=', 'reservations.id_room')
+            ->join('locals', 'locals.id', '=', 'rooms.id_local')
+            ->select('locals.name as locals_name', 'rooms.name as rooms_name', 'reservations.*')
+            ->paginate(10);
+
         return view('reservations.index', compact('reservations'));
     }
 
@@ -27,8 +32,8 @@ class ReservationController extends Controller
         // Validação dos dados da reserva
         $request->validate([
             'date' => 'required|date',
-            'start_time' => 'required|date_format:H:i',
-            'end_time' => 'required|date_format:H:i|after:start_time',
+            'start_time' => 'required|date_format:Y-m-d H:i:s',  // Valida uma data e hora completa
+            'end_time' => 'required|date_format:Y-m-d H:i:s|after:start_time',  // Garantir que 'end_time' seja depois de 'start_time'
             'id_room' => 'required|exists:rooms,id',
             'id_course' => 'required|exists:courses,id', // Validação para o id_course
         ]);
@@ -147,16 +152,24 @@ class ReservationController extends Controller
     public function stats()
     {
         // Obter estatísticas de uso das salas para o mês atual
-        $stats = Reservation::selectRaw(
-            'DATE_FORMAT(reservations.date, "%Y-%m") as month, ' . // Formata a data para "YYYY-MM"
-                'rooms.name, ' .
-                'COUNT(reservations.id) as reservations_count, ' .
-                'SUM(TIMESTAMPDIFF(SECOND, reservations.start_time, reservations.end_time)) / 3600 as total_hours' // Calcula horas totais
-        )
-            ->join('rooms', 'reservations.id_room', '=', 'rooms.id') // Une com a tabela de salas
-            ->groupByRaw('DATE_FORMAT(reservations.date, "%Y-%m"), rooms.name') // Agrupa por mês e sala
-            ->orderBy('month', 'asc') // Ordena por mês
-            ->get();
+        $stats = DB::table('reservations')
+            ->join('rooms', 'rooms.id', '=', 'reservations.id_room')  // Junta com a tabela de salas
+            ->join('locals', 'locals.id', '=', 'rooms.id_local')   // Junta com a tabela de locais
+            ->selectRaw(
+                'DATE_FORMAT(reservations.start_time, "%Y-%m-%d") as full_date, ' .  // Formata a data completa para "YYYY-MM-DD"
+                    'locals.name as local_name, ' .  // Nome do local
+                    'rooms.name as room_name, ' . // Nome da sala
+                    'COUNT(reservations.id) as reservations_count, ' .   // Conta o número de reservas
+                    'SUM(
+                    ABS(TIMESTAMPDIFF(SECOND,
+                        GREATEST(reservations.start_time, reservations.end_time),
+                        LEAST(reservations.start_time, reservations.end_time)
+                    ))
+                ) / 3600 as total_hours' // Soma as horas totais, garantindo que a diferença não seja negativa
+            )
+            ->groupByRaw('DATE_FORMAT(reservations.start_time, "%Y-%m-%d"), locals.name, rooms.name') // Agrupa por data completa, nome do local e nome da sala
+            ->orderBy('full_date', 'asc')  // Ordena por data completa (dia-mês-ano)
+            ->paginate(10);  // Paginação para 10 registros por página
 
         return view('stats.index', compact('stats'));
     }

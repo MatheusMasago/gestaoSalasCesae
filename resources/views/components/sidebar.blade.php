@@ -63,8 +63,8 @@
                     </span>
                 </a>
             </li>
-            <li>
-                <li class="has-subnav {{ request()->is('coruses') ? 'active' : '' }}">
+            <li class="has-subnav {{ request()->is('coruses') ? 'active' : '' }}">
+                <a href="{{ route('courses.index') }}">
                     <i class="fa fa-book"></i>
                     <span class="nav-text">
                         Cursos
