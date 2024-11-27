@@ -19,7 +19,7 @@
         <nav class="navbar navbar-expand-lg fixed-top" id="navBar">
             <div class="container-fluid">
                 <a class="navbar-brand" href="{{ route('home') }}">
-                    <img src="{{ asset('images/logo_cesae-cores_horizontal.png') }}" alt="CESAE" id="logoBrand">
+                    <img src="{{ asset('images/cesae.png') }}" alt="CESAE" id="logoBrand">
                 </a>
                 <div class="d-flex ms-auto">
                     @auth
@@ -50,7 +50,7 @@
                                 <ul class="dropdown-menu dropdown-menu-center p-3">
                                     @auth
                                         <li class="dropdown-item">
-                                            Olá <span style="color: #005b9a;">{{ Auth::user()->name }}</span>
+                                            Olá <span style="color: #ad0063;">{{ Auth::user()->name }}</span>
                                         </li>
                                         <li class="dropdown-item">
                                             <form id="logout-form" action="{{ route('logout') }}" method="POST">
@@ -59,12 +59,12 @@
                                             </form>
                                         </li>
 
-                                        @if (Auth::user()->user_type == App\Models\User::TYPE_ADMIN)
+                                        {{-- @if (Auth::user()->user_type == App\Models\User::TYPE_ADMIN)
                                             <li class="dropdown-item">
                                                 <a class="btn bg-transparent p-0"
                                                     href="{{ route('users.index') }}">Dashboard</a>
                                             </li>
-                                        @endif
+                                        @endif --}}
                                     @endauth
                                 </ul>
                             @endif

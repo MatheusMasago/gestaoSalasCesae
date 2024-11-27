@@ -19,7 +19,7 @@
         <ul>
             @auth
                 @if (Auth::user()->user_type == App\Models\User::TYPE_ADMIN)
-                    <li>
+                    <li class="has-subnav {{ request()->is('users') ? 'active' : '' }}">
                         <a href="{{ route('users.index') }}">
                             <i class="fa fa-user"></i>
                             <span class="nav-text">
@@ -29,7 +29,7 @@
                     </li>
                 @endif
             @endauth
-            <li class="has-subnav">
+            <li class="has-subnav {{ request()->is('reservations') ? 'active' : '' }}">
                 <a href="{{ route('reservations.index') }}">
                     <i class="fa fa-globe"></i>
                     <span class="nav-text">
@@ -37,7 +37,7 @@
                     </span>
                 </a>
             </li>
-            <li class="has-subnav">
+            <li class="has-subnav {{ request()->is('stats') ? 'active' : '' }}">
                 <a href="{{ route('stats') }}">
                     <i class="fa fa-comments"></i>
                     <span class="nav-text">
@@ -46,7 +46,7 @@
                 </a>
 
             </li>
-            <li class="has-subnav">
+            <li class="has-subnav {{ request()->is('locals') ? 'active' : '' }}">
                 <a href="{{ route('locals.index') }}">
                     <i class="fa fa-camera-retro"></i>
                     <span class="nav-text">
@@ -55,7 +55,7 @@
                 </a>
 
             </li>
-            <li>
+            <li class="has-subnav {{ request()->is('rooms') ? 'active' : '' }}">
                 <a href="{{ route('rooms.index') }}">
                     <i class="fa fa-film"></i>
                     <span class="nav-text">
@@ -64,7 +64,7 @@
                 </a>
             </li>
             <li>
-                <a href="{{ route('courses.index') }}">
+                <li class="has-subnav {{ request()->is('coruses') ? 'active' : '' }}">
                     <i class="fa fa-book"></i>
                     <span class="nav-text">
                         Cursos
