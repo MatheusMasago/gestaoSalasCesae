@@ -27,9 +27,7 @@ Route::get('/email/verify/{id}/{hash}', [VerificationController::class, 'verify'
     ->middleware(['auth', 'signed'])
     ->name('verification.verify');
 
-Route::middleware('verified')->get('/home', function () {
-    return view('home.index');
-})->name('home');
+Route::middleware('verified')->get('/home', [HomeController::class, 'index'])->name('home');
 
 Route::middleware('auth')->group(function () {
     // Definindo a rota para o índice de users
@@ -46,6 +44,12 @@ Route::middleware('auth')->group(function () {
     Route::resource('courses', CourseController::class);
     // Definindo a rota para o stats de courses
     Route::get('stats', [ReservationController::class, 'stats'])->name('stats');
+    Route::get('reservationsList', [ReservationController::class, 'bladeIndex'])->name('reservations.index');
+    Route::get('/calendar', [ReservationController::class, 'index'])->name('calendar');
+    Route::post('/calendario', [ReservationController::class, 'store'])->name('calendar.store');
+    Route::get('/eventos', [ReservationController::class, 'showEvents']);
+    Route::get('/viewReserve', [ReservationController::class, 'viewReserve'])->name('view');
+    Route::get('/reserve_delete{id}', [ReservationController::class, 'deleteReserve'])->name('delete');
 });
 
 Route::get('/users', [UserController::class, 'index'])

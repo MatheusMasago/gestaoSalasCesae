@@ -17,6 +17,7 @@
                             <form class="login-form" method="POST" action="{{ route('addUser') }}">
                                 @csrf
                                 <div class="mb-3">
+                                    <p class="d-block text-start" for="name" id="text_userType">Nome</p>
                                     <input id="name" type="text"
                                         class="form-control @error('name') is-invalid @enderror" name="name"
                                         value="{{ old('name') }}" required autofocus placeholder="nome">
@@ -29,6 +30,7 @@
                                 </div>
 
                                 <div class="mb-3">
+                                    <p class="d-block text-start" for="email" id="text_userType">Email</p>
                                     <input id="email" type="email"
                                         class="form-control @error('email') is-invalid @enderror" name="email"
                                         value="{{ old('email') }}" required placeholder="email">
@@ -41,6 +43,7 @@
                                 </div>
 
                                 <div class="mb-3">
+                                    <p class="d-block text-start" for="password" id="text_userType">Senha</p>
                                     <input id="password" type="password"
                                         class="form-control @error('password') is-invalid @enderror" name="password"
                                         required placeholder="senha">
@@ -53,6 +56,8 @@
                                 </div>
 
                                 <div class="mb-3">
+                                    <p class="d-block text-start" for="password_confirmation" id="text_userType">Confirme a
+                                        Senha</p>
                                     <input id="password_confirmation" type="password" class="form-control"
                                         name="password_confirmation" required placeholder="confirme a senha">
                                 </div>

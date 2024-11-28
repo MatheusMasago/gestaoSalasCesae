@@ -893,8 +893,8 @@ img {
     float: none;
     margin: 1.1%;
     padding: 0;
-    max-width: 47%;
-    height: 270px;
+    max-width: 96%;
+    height: 500px;
     width: 100%;
     text-align: center;
     background: #eee;
@@ -902,6 +902,7 @@ img {
     transition: -webkit-transform 0.2s cubic-bezier(0.625, 0.125, 0.305, 0.875);
     transition: transform 0.2s cubic-bezier(0.625, 0.125, 0.305, 0.875);
     transition: transform 0.2s cubic-bezier(0.625, 0.125, 0.305, 0.875), -webkit-transform 0.2s cubic-bezier(0.625, 0.125, 0.305, 0.875);
+    border-radius: 15px;
 }
 
 .tile:hover,
@@ -911,7 +912,7 @@ img {
 
 .tile-quad {
     max-width: 30.3333%;
-    height: 250px;
+    height: 200px;
 }
 
 .tile figure {
@@ -960,13 +961,6 @@ img {
     transition: all .25s;
 }
 
-/* .tile a:hover, .tile a:focus {
-    background: rgba(0, 0, 0, 0.6);
-  } */
-/*.tile a:hover p, .tile a:focus p {
-    color: #fff;
-    transition: all .25s;
-  }*/
 .tile a div {
     position: relative;
     display: table-cell;
@@ -998,52 +992,28 @@ img {
     transition: all .5s;
 }
 
-/*.tile a:hover p,
-  .tile a:focus p {
-    opacity: 1;
-    max-height: 999px;
-    transition: opacity 1s, max-height 1s;
-  }*/
-
-/*.tile h3:after {
-    content: '';
-    position: absolute;
-    left: 2.8rem;
-    margin: 64px auto;
-    width: 0px;
-    height: 2px;
-    background: #fff;
-    -webkit-transition: width 0.6s;
-    transition: width 0.6s;
-    opacity: 0;
-  }
-  .tile a:hover h3:after, .tile a:focus h3:after {
-    width: 64px;
-    opacity: 1;
-  }*/
-
-.color-red {
-    background: rgba(255, 60, 78, 0.76);
+#colorText {
+    color: #9d9cb7 !important;
 }
 
-.color-yellow {
-    background: rgba(255, 185, 29, 0.76);
+.color-lightBlue {
+    background: #52c6f4;
 }
 
-.color-green {
-    background: rgba(35, 226, 94, 0.76);
-}
-
-.color-blue {
-    background: rgba(49, 122, 255, 0.76);
+.color-pink {
+    background: #ed4da0;
 }
 
 .color-purple {
-    background: rgba(225, 60, 255, 0.76);
+    background: #493f74;
 }
 
-.color-aqua {
-    background: rgba(48, 228, 212, 0.76);
+.color-white {
+    background: white;
+}
+
+.shadow-box {
+    box-shadow: 1px 4px 4px rgba(0, 0, 0, 0.08);
 }
 
 @media screen and (max-width: 700px) {
@@ -1055,4 +1025,29 @@ img {
     .tile:nth-child(8) {
         max-width: 97%;
     }
+}
+
+/* Gráfico */
+#myChart {
+    display: block;
+    box-sizing: border-box;
+    height: 600px !important;
+    width: 600px !important;
+    margin: auto; /* Centraliza caso necessário */
+}
+
+#graficoSala {
+    margin-bottom: 5%;
+}
+
+#usageChart {
+    margin-bottom: 5%;
+}
+
+#cards {
+    margin-left: 20%;
+}
+
+#cards2 {
+    margin-right: 12%;
 }

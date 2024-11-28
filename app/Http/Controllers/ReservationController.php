@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Models\Reservation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -9,7 +10,7 @@ use Illuminate\Support\Facades\DB;
 class ReservationController extends Controller
 {
     // Exibir todas as reservas
-    public function index()
+    public function bladeIndex()
     {
         $reservations = DB::table('reservations')
             ->join('rooms', 'rooms.id', '=', 'reservations.id_room')
@@ -18,6 +19,32 @@ class ReservationController extends Controller
             ->paginate(10);
 
         return view('reservations.index', compact('reservations'));
+    }
+
+    public function index()
+    {
+        $courses = $this->getCourses();
+        $rooms = $this->getRooms();
+        $reserves = DB::table('reservations')->get();
+        $users = $this->getUser();
+        $reservations = Reservation::all();
+        $idReservations = $reservations->pluck('id');
+        $events = array();
+
+        foreach ($reservations as $reservation) {
+
+            $events[] = array(
+
+                /* 'name' => $reservation->id_reservation, */
+                // 'day' => $reservation -> date,
+                'start' => $reservation->start_time,
+                'end' => $reservation->end_time,
+                'room' => $reservation->id_room,
+                'course' => $reservation->id_course
+            );
+        }
+
+        return view('calendar.calendar', ['events' => $events], compact('rooms', 'users', 'courses', 'reserves', 'idReservations'));
     }
 
     // Exibir o formulário para criar uma nova reserva
@@ -29,80 +56,109 @@ class ReservationController extends Controller
     // Salvar uma nova reserva
     public function store(Request $request)
     {
-        // Validação dos dados da reserva
-        $request->validate([
-            'date' => 'required|date',
-            'start_time' => 'required|date_format:Y-m-d H:i:s',  // Valida uma data e hora completa
-            'end_time' => 'required|date_format:Y-m-d H:i:s|after:start_time',  // Garantir que 'end_time' seja depois de 'start_time'
-            'id_room' => 'required|exists:rooms,id',
-            'id_course' => 'required|exists:courses,id', // Validação para o id_course
-        ]);
+        try {
+            $request->validate([
+                'start_time' => 'required',
+                'end_time' => 'required',
+                'id_room_' => 'required',
+                'id_user' => 'required',
+                //'date'=>'required',
+                'id_course_' => 'required'
+            ]);
+            $startTime = Carbon::parse($request->start_time)->format('Y-m-d H:i:s');
+            $endTime = Carbon::parse($request->end_time)->format('Y-m-d H:i:s');
+            DB::table('reservations')->insert([
+                // 'start_time' => $request->startTime,
+                'start_time' => $startTime,
+                'end_time' => $endTime,
+                'id_room' => $request->id_room_,
+                'id_user' => $request->id_user,
+                //'date'=>$request->date,
+                'id_course' => $request->id_course_
+            ]);
 
-        // Verificar se já existe uma reserva para a mesma sala e horário
-        $existingReservation = Reservation::where('id_room', $request->id_room)
-            ->where('date', $request->date)
-            ->where(function ($query) use ($request) {
-                // Verificar se o horário de início ou fim se sobrepõe com outra reserva
-                $query->whereBetween('start_time', [$request->start_time, $request->end_time])
-                    ->orWhereBetween('end_time', [$request->start_time, $request->end_time])
-                    ->orWhere(function ($query) use ($request) {
-                        $query->where('start_time', '<=', $request->start_time)
-                            ->where('end_time', '>=', $request->end_time);
-                    });
-            })
-            ->exists();
-
-        // Se já existir uma reserva para a mesma sala e horário, retornar erro
-        if ($existingReservation) {
-            return redirect()->route('reservations.create')
-                ->withErrors(['time_conflict' => 'Esta sala já está reservada para o mesmo horário.']);
+            return response()->json([
+                'success' => true,
+                // 'id' => $request->id,
+                // 'name' => $request->name,
+            ]);
+        } catch (\Exception $e) {
+            error_log($e->getMessage());
+            return response()->json([
+                'success' => false,
+                'message' => $e->getMessage()
+            ], 500);
         }
-
-        // Se não houver conflito, criar a nova reserva
-        $reservation = new Reservation();
-        $reservation->date = $request->date;
-        $reservation->start_time = $request->start_time;
-        $reservation->end_time = $request->end_time;
-        $reservation->id_user = $request->auth()->user()->id;  // Usando o ID do usuário logado
-        $reservation->id_course = $request->id_course;  // Usando o ID do curso
-        $reservation->status = 'pending';  // Status inicial como pendente
-        $reservation->save();
-
-        return redirect()->route('reservations.index')->with('success', 'Reserva criada com sucesso!');
     }
 
     // Exibir os detalhes de uma reserva
-    public function show($id)
+    /*     public function show($id)
     {
         $reservation = Reservation::findOrFail($id);
         return view('reservations.show', compact('reservation'));
-    }
+    } */
 
     // Exibir o formulário de edição de uma reserva
-    public function edit($id)
+    /*    public function edit($id)
     {
         $reservation = Reservation::findOrFail($id);
         return view('reservations.edit', compact('reservation'));
-    }
+    } */
 
     // Atualizar a reserva
-    public function update(Request $request, $id)
+    public function update(Request $request, Reservation $reservation)
     {
-        $request->validate([
+        // Validação dos dados de entrada
+        $validatedData = $request->validate([
+
             'date' => 'required|date',
             'start_time' => 'required|date_format:H:i',
             'end_time' => 'required|date_format:H:i|after:start_time',
-            'id_room' => 'required|exists:rooms,id',
         ]);
 
-        $reservation = Reservation::findOrFail($id);
-        $reservation->date = $request->date;
-        $reservation->start_time = $request->start_time;
-        $reservation->end_time = $request->end_time;
-        $reservation->id_room = $request->id_room;
-        $reservation->save();
+        // Atualiza a reserva com os dados validados
+        $reservation->update($validatedData);
 
-        return redirect()->route('reservations.index')->with('success', 'Reserva atualizada com sucesso!');
+        return response()->json('Event updated successfully');
+    }
+
+    public function destroy($id)
+    {
+        $event = Reservation::find($id);
+        if ($event) {
+            $event->delete();
+            return response()->json(['success' => true]);
+        }
+        return response()->json(['success' => false, 'message' => 'Evento não encontrado.']);
+    }
+
+    public function getRooms()
+    {
+        $rooms = DB::table('rooms')->get();
+        return $rooms;
+    }
+    public function getUser()
+    {
+        $users = DB::table('users')->get();
+        return $users;
+    }
+    public function getCourses()
+    {
+        $course = DB::table('courses')->get();
+        return $course;
+    }
+    public function deleteReserve($id)
+    {
+        db::table('reservations')->where('id', $id)->delete();
+
+        return redirect()->route('calendar');
+    }
+
+    public function viewReserve()
+    {
+        $reserves = DB::table('reservations')->get();
+
+        return view('pages.show_event', compact('reserves'));
     }
 
     public function cancel($id)

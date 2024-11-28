@@ -17,6 +17,7 @@
                             <form class="login-form" method="POST" action="{{ route('locals.store') }}">
                                 @csrf
                                 <div class="mb-3">
+                                    <p class="d-block text-start" for="name" id="text_userType">Nome</p>
                                     <input id="name" type="text" class="form-control" name="name" required
                                         autofocus placeholder="nome">
                                 </div>

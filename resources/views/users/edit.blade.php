@@ -78,6 +78,7 @@
                                 @csrf
                                 @method('PUT')
                                 <div class="mb-3">
+                                    <p class="d-block text-start" for="id_user" id="text_userType">Nome </p>
                                     <input id="name" type="text"
                                         class="form-control @error('name') is-invalid @enderror" name="name"
                                         value="{{ old('name', $user->name) }}" required autofocus placeholder="nome">
@@ -90,6 +91,7 @@
                                 </div>
 
                                 <div class="mb-3">
+                                    <p class="d-block text-start" for="id_email" id="text_userType">Email</p>
                                     <input id="email" type="email"
                                         class="form-control @error('email') is-invalid @enderror" name="email"
                                         value="{{ old('email', $user->email) }}" required placeholder="email">
@@ -103,7 +105,7 @@
 
                                 <!-- Tipo de Usuário -->
                                 <div class="mb-3">
-                                    <label for="user_type" class="form-label">Tipo de Usuário</label>
+                                    <p class="d-block text-start" for="user_type" id="text_userType">Tipo de Usuário</p>
                                     <select id="user_type" name="user_type" class="form-control" required>
                                         <option value="Admin" {{ $user->user_type == 'Admin' ? 'selected' : '' }}>Admin
                                         </option>
@@ -115,11 +117,13 @@
                                 </div>
 
                                 <div class="mb-3">
+                                    <p class="d-block text-start" for="id_password" id="text_userType">Nova Senha </p>
                                     <input type="password" id="password" name="password" class="form-control"
                                         placeholder="nova senha (opcional)">
                                 </div>
 
                                 <div class="mb-3">
+                                    <p class="d-block text-start" for="id_password" id="text_userType">Confirme a Senha </p>
                                     <input id="password_confirmation" type="password" class="form-control"
                                         name="password_confirmation" required placeholder="confirme a nova senha">
                                 </div>

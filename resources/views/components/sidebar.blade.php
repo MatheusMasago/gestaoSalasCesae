@@ -29,6 +29,14 @@
                     </li>
                 @endif
             @endauth
+            <li class="has-subnav {{ request()->is('calendar') ? 'active' : '' }}">
+                <a href="{{ route('calendar') }}">
+                    <i class="fa fa-calendar"></i>
+                    <span class="nav-text">
+                        Calendário Reservas
+                    </span>
+                </a>
+            </li>
             <li class="has-subnav {{ request()->is('reservations') ? 'active' : '' }}">
                 <a href="{{ route('reservations.index') }}">
                     <i class="fa fa-globe"></i>
