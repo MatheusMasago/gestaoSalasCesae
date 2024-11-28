@@ -19,8 +19,8 @@
                                 @method('PUT')
                                 <div class="mb-3">
                                     <p class="d-block text-start" for="name" id="text_userType">Nome</p>
-                                    <input id="name" type="text" class="form-control" name="name" required
-                                        autofocus value="{{ $local->name }}">
+                                    <input id="name" type="text" class="form-control" name="name" autofocus
+                                        value="{{ $local->name }}">
                                 </div>
 
                                 <button type="submit" class="btn btn-primary w-100">Atualizar Local</button>

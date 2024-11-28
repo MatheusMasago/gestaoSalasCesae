@@ -81,7 +81,7 @@
                                     <p class="d-block text-start" for="id_user" id="text_userType">Nome </p>
                                     <input id="name" type="text"
                                         class="form-control @error('name') is-invalid @enderror" name="name"
-                                        value="{{ old('name', $user->name) }}" required autofocus placeholder="nome">
+                                        value="{{ old('name', $user->name) }}" autofocus placeholder="nome">
 
                                     @error('name')
                                         <span class="invalid-feedback" role="alert">
@@ -94,7 +94,7 @@
                                     <p class="d-block text-start" for="id_email" id="text_userType">Email</p>
                                     <input id="email" type="email"
                                         class="form-control @error('email') is-invalid @enderror" name="email"
-                                        value="{{ old('email', $user->email) }}" required placeholder="email">
+                                        value="{{ old('email', $user->email) }}" placeholder="email">
 
                                     @error('email')
                                         <span class="invalid-feedback" role="alert">
@@ -106,7 +106,7 @@
                                 <!-- Tipo de Usuário -->
                                 <div class="mb-3">
                                     <p class="d-block text-start" for="user_type" id="text_userType">Tipo de Usuário</p>
-                                    <select id="user_type" name="user_type" class="form-control" required>
+                                    <select id="user_type" name="user_type" class="form-control">
                                         <option value="Admin" {{ $user->user_type == 'Admin' ? 'selected' : '' }}>Admin
                                         </option>
                                         <option value="Moderator" {{ $user->user_type == 'Moderator' ? 'selected' : '' }}>
@@ -125,7 +125,7 @@
                                 <div class="mb-3">
                                     <p class="d-block text-start" for="id_password" id="text_userType">Confirme a Senha </p>
                                     <input id="password_confirmation" type="password" class="form-control"
-                                        name="password_confirmation" required placeholder="confirme a nova senha">
+                                        name="password_confirmation" placeholder="confirme a nova senha">
                                 </div>
 
                                 <button type="submit" class="btn btn-primary w-100">Salvar Alterações</button>

@@ -19,17 +19,18 @@
                                 @method('PUT')
                                 <div class="mb-3">
                                     <p class="d-block text-start" for="id_sala" id="text_userType">Nome de Sala</p>
-                                    <input id="name" type="text" class="form-control" name="name" required
-                                        autofocus value="{{ $room->name }}">
+                                    <input id="name" type="text" class="form-control" name="name" autofocus
+                                        value="{{ $room->name }}">
                                 </div>
                                 <div class="mb-3">
                                     <p class="d-block text-start" for="id_capacity" id="text_userType">Capacidade</p>
-                                    <input id="capacity" type="text" class="form-control" name="capacity" required
-                                        autofocus value="{{ $room->capacity }}">
+                                    <input type="text" name="capacity" id="id_capacity" class="form-control"
+                                        value="{{ $room->capacity }}">
                                 </div>
+
                                 <div class="mb-3">
                                     <p class="d-block text-start" for="id_local" id="text_userType">Local</p>
-                                    <select name="id_local" id="id_local" class="form-control" required>
+                                    <select name="id_local" id="id_local" class="form-control">
                                         @foreach ($locals as $local)
                                             <option value="{{ $local->id }}"
                                                 {{ $room->id_local == $local->id ? 'selected' : '' }}>

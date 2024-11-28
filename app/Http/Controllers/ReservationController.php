@@ -158,7 +158,7 @@ class ReservationController extends Controller
     {
         $reserves = DB::table('reservations')->get();
 
-        return view('pages.show_event', compact('reserves'));
+        return view('calendar.show_event', compact('reserves'));
     }
 
     public function cancel($id)

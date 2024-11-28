@@ -18,17 +18,19 @@
                                 @csrf
                                 @method('PUT')
                                 <div class="mb-3">
-                                    <input id="name" type="text" class="form-control" name="name" required
-                                        autofocus value="{{ $course->name }}">
+                                    <p class="d-block text-start" for="name" id="text_userType">Nome</p>
+                                    <input id="name" type="text" class="form-control" name="name" autofocus
+                                        value="{{ $course->name }}">
                                 </div>
                                 <div class="mb-3">
+                                    <p class="d-block text-start" for="quantity_places" id="text_userType">Nome</p>
                                     <input id="quantity_places" type="text" class="form-control" name="quantity_places"
-                                        required autofocus value="{{ $course->quantity_places }}">
+                                        autofocus value="{{ $course->quantity_places }}">
                                 </div>
 
                                 <div class="mb-3">
-                                    <label for="id_user">Responsável</label>
-                                    <select name="id_user" id="id_user" class="form-control" required>
+                                    <p class="d-block text-start" for="id_user" id="text_userType">Responsável</p>
+                                    <select name="id_user" id="id_user" class="form-control">
                                         @foreach ($users as $user)
                                             <option value="{{ $user->id }}"
                                                 {{ $course->id_user == $user->id ? 'selected' : '' }}>
