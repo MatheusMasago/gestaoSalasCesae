@@ -85,6 +85,6 @@ class RegisterController extends Controller
      */
     protected function redirectTo()
     {
-        return route('home'); // Redireciona para a página inicial após o registro
+        return route('login'); // Redireciona para a página inicial após o registro
     }
 }

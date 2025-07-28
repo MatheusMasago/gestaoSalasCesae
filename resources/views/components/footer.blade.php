@@ -21,7 +21,7 @@
                 <div class="row justify-content-center">
                     <div class="col-12 text-center">
                         <div class="copyright-text">
-                            <p>Copyright &copy; 2024 CESAE Book Space. Todos os direitos reservados.</p>
+                            <p>Copyright &copy; 2024 Projeto Condomínio. Todos os direitos reservados.</p>
                         </div>
                     </div>
                 </div>

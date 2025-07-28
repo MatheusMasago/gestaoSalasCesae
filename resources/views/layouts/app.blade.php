@@ -2,7 +2,7 @@
 
 @include('components.sidebar')
 
-<div class="main-content" >
+<div class="main-content">
     @yield('content')
 </div>
 
